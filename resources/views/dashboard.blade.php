@@ -6,7 +6,7 @@
             padding: 12px;
         }
         table{
-            width: 100%
+            width: 95%
         }
         .center{
             margin-left: auto;
