@@ -23,15 +23,16 @@
                     <th>Email</th>
                     <th>Year</th>
                 </tr>
-                <tr>
-                    <td>Namit Kumar</td>
-                    <td>19csu185</td>
-                    <td>8130216394</td>
-                    <td>kumarnamit58@gmail.com</td>
-                    <td>2nd</td>
-                </tr>
+                @foreach($students as $student )
+                    <tr>
+                        <td>{{ $student->Name }}</td>
+                        <td>{{ $student->RollNo }}</td>
+                        <td>{{ $student->Contact }}</td>
+                        <td>{{ $student->Email }}</td>
+                        <td>{{ $student->Year }}</td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
 </x-layout>
-
