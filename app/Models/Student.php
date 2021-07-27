@@ -11,11 +11,11 @@ class Student extends Model
 
     protected $table = 'students';
     protected $fillable = [
-        'Name',
-        'RollNo',
-        'Contact',
-        'Email',
-        'Year'
+        'name',
+        'rollno',
+        'contact',
+        'email',
+        'year'
     ];
     protected $guarded = [];
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -31,7 +31,16 @@ class StudentController extends Controller
         else
         {
             $student = new Student();
+            $student->name = $request->input('name');
+            $student->rollno = $request->input('rollno');
+            $student->contact = $request->input('contact');
+            $student->email = $request->input('email');
+            $student->year = $request->input('year');
+            $student->save();
+            return response()->json([
+                'status' => 200,
+                'message'=>'Student Added Successfully',
+            ]);
         }
-        //        $student = new Student;
     }
 }

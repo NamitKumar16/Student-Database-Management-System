@@ -13,6 +13,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <ul id="saveform_errList"></ul>
                         <div class="form-group mb-3">
                             <label for="">Name</label>
                             <input type="text" class="name form-control">
@@ -46,6 +47,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-12">
+                    <div id = "success_message"></div>
                     <div class="card">
                         <div class="card-header">
                             <h4>Students Data
@@ -75,7 +77,7 @@
                         'email': $('.email').val(),
                         'year': $('.year').val()
                     }
-                    // console.log(data);
+                    // console.log(response.errors.name);
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -88,9 +90,23 @@
                         data: data,
                         dataType: "json",
                         success: function (response) {
-                            console.log(response);
+                            // console.log(response);
+                            if (response.status == 400) {
+                                $("#saveform_errList").html("");
+                                $("#saveform_errList").addClass('alert alert-danger');
+                                $.each(response.errors, function (key, err_values) {
+                                    $('#saveform_errList').append('<li>' + err_values + '</li>');
+                                });
+                            }
+                            else {
+                                $('#saveform_errList').html("");
+                                $('#success_message').addClass('alert alert-success')
+                                $('#success_message').text(response.message)
+                                $('#AddStudentModal').modal('hide');
+                                $('#AddStudentModal').find('input').val("");
+                            }
                         }
-                    })
+                    });
                 });
             });
         </script>
