@@ -4,15 +4,16 @@
 
 
         {{-- AddStudentModal --}}
-        <div class="modal fade" id="AddStudentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="AddStudentModal" tabindex="-1" aria-labelledby="AddStudentModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+                        <h5 class="modal-title" id="AddStudentModal">Add Student</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
                         <ul id="saveform_errList"></ul>
                         <div class="form-group mb-3">
                             <label for="">Name</label>
@@ -47,7 +48,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-12">
-                    <div id = "success_message"></div>
+                    <div id="success_message"></div>
                     <div class="card">
                         <div class="card-header">
                             <h4>Students Data
@@ -77,7 +78,7 @@
                         'email': $('.email').val(),
                         'year': $('.year').val()
                     }
-                    // console.log(response.errors.name);
+
                     $.ajaxSetup({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -97,11 +98,10 @@
                                 $.each(response.errors, function (key, err_values) {
                                     $('#saveform_errList').append('<li>' + err_values + '</li>');
                                 });
-                            }
-                            else {
+                            } else {
                                 $('#saveform_errList').html("");
-                                $('#success_message').addClass('alert alert-success')
-                                $('#success_message').text(response.message)
+                                $('#success_message').addClass('alert alert-success');
+                                $('#success_message').text(response.message);
                                 $('#AddStudentModal').modal('hide');
                                 $('#AddStudentModal').find('input').val("");
                             }

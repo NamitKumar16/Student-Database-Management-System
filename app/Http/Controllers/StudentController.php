@@ -13,24 +13,24 @@ class StudentController extends Controller
         return view('student');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:191',
             'rollno' => 'required|max:191',
-            'contact' => 'required|max:191',
+            'contact' => 'required|max:10|min:10',
             'email' => 'required|email|max:191',
             'year' => 'required|max:191'
         ]);
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
-                'errors' => $validator->messages(),
+                'errors' => $validator->messages()
             ]);
         }
         else
         {
-            $student = new Student();
+            $student = new Student;
             $student->name = $request->input('name');
             $student->rollno = $request->input('rollno');
             $student->contact = $request->input('contact');
@@ -39,7 +39,7 @@ class StudentController extends Controller
             $student->save();
             return response()->json([
                 'status' => 200,
-                'message'=>'Student Added Successfully',
+                'message'=>'Student Added Successfully.'
             ]);
         }
     }

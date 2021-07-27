@@ -17,5 +17,4 @@ class Student extends Model
         'email',
         'year'
     ];
-    protected $guarded = [];
 }
