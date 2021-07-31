@@ -1,5 +1,3 @@
-
-
 <x-layout>
     @extends('layouts.app')
     @section('content')
@@ -121,10 +119,9 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="content-table">
                             <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Course</th>
                                 <th>Email</th>
@@ -161,7 +158,6 @@
                         $('tbody').html("");
                         $.each(response.students, function (key, item) {
                             $('tbody').append('<tr>\
-                            <td>' + item.id + '</td>\
                             <td>' + item.name + '</td>\
                             <td>' + item.course + '</td>\
                             <td>' + item.email + '</td>\
