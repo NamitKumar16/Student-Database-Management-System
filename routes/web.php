@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\WelcomeController;
@@ -18,11 +19,11 @@ use App\Http\Controllers\StudentController;
 */
 Route::get('/', [WelcomeController::class, 'welcome'])->name('home');
 
-Route::get('register', [RegisterController::class,'create'])->middleware('guest');
-Route::post('register', [RegisterController::class,'store'])->middleware('guest');
+Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('login',[SessionsController::class,'create'])->middleware('guest');
-Route::post('login',[SessionsController::class,'store'])->middleware('guest');
+Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
+Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
 
 Route::get('students', [StudentController::class, 'index']);
 Route::post('students', [StudentController::class, 'store']);
@@ -31,4 +32,4 @@ Route::get('edit-student/{id}', [StudentController::class, 'edit']);
 Route::put('update-student/{id}', [StudentController::class, 'update']);
 Route::delete('delete-student/{id}', [StudentController::class, 'destroy']);
 
-Route::post('logout',[SessionsController::class,'destroy']);
+Route::post('logout', [SessionsController::class, 'destroy']);
